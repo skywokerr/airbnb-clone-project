@@ -74,3 +74,45 @@ The **Airbnb Clone Project** is a comprehensive, real-world application designed
 - **BA + PO**: Refine "wishlist" feature based on guest/host pain points.  
 - **Architect + DevOps**: Optimize database sharding for global property listings.  
 - **Frontend + QA**: Ensure pixel-perfect UI across 100+ device types.  
+
+## Technology Stack
+
+### Backend Technologies
+| Technology       | Purpose in Project                                                                 |
+|------------------|-----------------------------------------------------------------------------------|
+| **Django**       | High-level Python web framework for building secure, scalable RESTful APIs. Provides ORM, authentication, and admin panel out-of-the-box. |
+| **PostgreSQL**   | Relational database with PostGIS extension for geospatial queries (e.g., "Find listings within 5km of Paris"). Ensures ACID compliance for bookings/payments. |
+| **Redis**        | In-memory cache for frequently accessed data (e.g., search results, session storage) to reduce database load. |
+| **Celery**       | Asynchronous task queue for background jobs (e.g., sending booking confirmation emails, processing image uploads). |
+| **Stripe API**   | Payment processing for secure credit card transactions and subscription management. |
+| **GraphQL**      | Alternative to REST for flexible data fetching (e.g., allowing clients to request only listing details they need). |
+
+### Frontend Technologies
+| Technology       | Purpose in Project                                                                 |
+|------------------|-----------------------------------------------------------------------------------|
+| **React.js**     | Library for building interactive UIs with reusable components (e.g., listing cards, booking forms). |
+| **Next.js**      | React framework enabling server-side rendering (SSR) for better SEO and performance. |
+| **Mapbox GL JS** | Interactive maps with custom markers and clustering for property locations. |
+| **Tailwind CSS** | Utility-first CSS framework for rapid UI development with responsive design. |
+| **React Query**  | Data-fetching library for managing server state (e.g., caching search results, optimistic updates). |
+
+### DevOps & Infrastructure
+| Technology       | Purpose in Project                                                                 |
+|------------------|-----------------------------------------------------------------------------------|
+| **Docker**       | Containerization for consistent development/production environments. |
+| **AWS (ECS/RDS)**| Cloud hosting: ECS for container orchestration, RDS for managed PostgreSQL. |
+| **GitHub Actions** | CI/CD pipeline for automated testing and deployment. |
+| **Nginx**        | Web server and reverse proxy for load balancing and SSL termination. |
+
+### Testing & Monitoring
+| Technology       | Purpose in Project                                                                 |
+|------------------|-----------------------------------------------------------------------------------|
+| **Cypress**      | End-to-end testing for critical user flows (e.g., booking process). |
+| **Jest**         | Unit testing framework for React components and utility functions. |
+| **Sentry**       | Real-time error tracking for frontend and backend. |
+| **New Relic**    | Performance monitoring for APIs and database queries. |
+
+### Key Integrations
+- **Google OAuth**: Secure user authentication.
+- **Elasticsearch**: Full-text search across listings (e.g., "pet-friendly beachfront villas").
+- **Twilio API**: SMS notifications for booking confirmations.
