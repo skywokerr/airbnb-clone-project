@@ -202,3 +202,37 @@ erDiagram
     PROPERTIES ||--o{ BOOKINGS : "has"
     PROPERTIES ||--o{ REVIEWS : "receives"
     BOOKINGS ||--|| PAYMENTS : "processes"
+   
+## Feature Breakdown
+
+### 1. User Management
+- **Description**: Handles registration, authentication (email/social login), and role-based access control (guests, hosts, admins).  
+- **Purpose**: Secures the platform while enabling personalized experiences for different user types.
+
+### 2. Property Listings  
+- **Description**: Allows hosts to create/manage listings with photos, descriptions, pricing, and amenities. Supports rich search/filtering.  
+- **Purpose**: Core marketplace functionality – connects guests with available properties.
+
+### 3. Booking System  
+- **Description**: Manages reservation workflows: availability checks, date conflicts, pricing calculations, and instant/request-based bookings.  
+- **Purpose**: Facilitates seamless transactions while preventing double-booking issues.
+
+### 4. Reviews & Ratings  
+- **Description**: Enables guests to leave ratings (1-5 stars) and detailed reviews for properties and hosts.  
+- **Purpose**: Builds trust in the community through transparent feedback.
+
+### 5. Payment Processing  
+- **Description**: Integrates with Stripe/PayPal for secure credit card transactions and payout handling for hosts.  
+- **Purpose**: Ensures PCI-compliant financial transactions with escrow support.
+
+### 6. Messaging  
+- **Description**: Real-time chat between guests and hosts for booking inquiries and coordination.  
+- **Purpose**: Improves communication without exposing personal contact details.
+
+### 7. Map Integration  
+- **Description**: Interactive maps (Mapbox/Google Maps) with property markers and location-based search.  
+- **Purpose**: Helps guests discover listings visually by geography.
+
+### 8. Admin Dashboard  
+- **Description**: Provides moderators with tools to manage users, listings, and resolve disputes.  
+- **Purpose**: Maintains platform integrity and handles edge cases.
