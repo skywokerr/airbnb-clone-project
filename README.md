@@ -236,3 +236,58 @@ erDiagram
 ### 8. Admin Dashboard  
 - **Description**: Provides moderators with tools to manage users, listings, and resolve disputes.  
 - **Purpose**: Maintains platform integrity and handles edge cases.    
+
+## API Security
+
+### Core Security Measures
+
+#### 1. Authentication
+- **Implementation**: JWT (JSON Web Tokens) with short-lived access tokens and refresh tokens.
+- **Why It Matters**:  
+  Prevents unauthorized access to user accounts. Critical for protecting personal data (emails, payment info) and ensuring only verified users can book properties or list homes.
+
+#### 2. Authorization (RBAC)
+- **Implementation**: Role-based access control (e.g., `guest`, `host`, `admin`) enforced at the API layer.
+- **Why It Matters**:  
+  Ensures hosts can’t modify bookings they don’t own, and guests can’t alter property listings. Admins retain oversight for dispute resolution.
+
+#### 3. Rate Limiting
+- **Implementation**: Throttle requests (e.g., 100 requests/minute per IP) using Redis counters.
+- **Why It Matters**:  
+  Protects against brute-force attacks and API abuse (e.g., scraping listing data or spamming bookings).
+
+#### 4. Data Validation & Sanitization
+- **Implementation**: 
+  - Input validation (e.g., Zod for request schemas).
+  - Parameterized SQL queries to prevent injection.
+- **Why It Matters**:  
+  Blocks SQL injection and XSS attacks that could compromise databases or steal session cookies.
+
+#### 5. Payment Security
+- **Implementation**:  
+  - Never store raw credit card data (use Stripe/PayPal tokens).
+  - PCI-DSS compliance via Stripe Elements for frontend payments.
+- **Why It Matters**:  
+  Financial data breaches can lead to legal penalties and loss of user trust. Tokenization shifts risk to certified payment processors.
+
+#### 6. HTTPS & CORS
+- **Implementation**:  
+  - Enforce HTTPS with TLS 1.2+.
+  - Restrict CORS to trusted domains (e.g., your frontend’s production URL).
+- **Why It Matters**:  
+  Encrypts data in transit to prevent MITM attacks and blocks malicious cross-origin requests.
+
+#### 7. Audit Logging
+- **Implementation**: Log all sensitive actions (logins, payments, booking changes) with timestamps and user IDs.
+- **Why It Matters**:  
+  Enables forensic analysis during security incidents (e.g., identifying how a breach occurred).
+
+---
+
+### Key Security Threats Addressed
+| Threat                | Mitigation                          | Impact if Ignored                 |
+|-----------------------|-------------------------------------|------------------------------------|
+| **Account Takeover**  | JWT + Rate limiting                 | Unauthorized bookings/fraud       |
+| **Data Leaks**        | RBAC + HTTPS                        | User privacy violations           |
+| **Payment Fraud**     | PCI-compliant processors            | Financial losses + legal risks    |
+| **DDoS Attacks**      | Rate limiting + Cloudflare          | API downtime + lost revenue       |
