@@ -116,3 +116,89 @@ The **Airbnb Clone Project** is a comprehensive, real-world application designed
 - **Google OAuth**: Secure user authentication.
 - **Elasticsearch**: Full-text search across listings (e.g., "pet-friendly beachfront villas").
 - **Twilio API**: SMS notifications for booking confirmations.
+
+## Database Design
+
+### Key Entities & Relationships
+
+#### 1. Users
+**Fields**:
+- `id` (PK): Unique user identifier
+- `email`: Login credential (unique)
+- `password_hash`: Securely stored password
+- `role`: Enum [guest, host, admin]
+- `profile_picture_url`: Avatar image
+
+**Relationships**:
+- One-to-Many with `Properties` (A host can list multiple properties)
+- One-to-Many with `Bookings` (A guest can have multiple bookings)
+- One-to-Many with `Reviews` (A user can write multiple reviews)
+
+---
+
+#### 2. Properties
+**Fields**:
+- `id` (PK): Unique property ID
+- `title`: Listing name (e.g., "Beachfront Villa")
+- `location`: PostGIS geography(POINT) for maps
+- `price_per_night`: Decimal value
+- `amenities`: JSON array (e.g., ["wifi", "pool"])
+
+**Relationships**:
+- Many-to-One with `Users` (Each property belongs to one host)
+- One-to-Many with `Bookings` (A property can have multiple bookings)
+- One-to-Many with `Reviews` (A property can receive multiple reviews)
+
+---
+
+#### 3. Bookings
+**Fields**:
+- `id` (PK): Booking ID
+- `check_in`/`check_out`: Date range
+- `total_price`: Calculated (nights × price + fees)
+- `status`: Enum [pending, confirmed, cancelled]
+- `payment_id` (FK): Links to payment record
+
+**Relationships**:
+- Many-to-One with `Users` (Each booking belongs to one guest)
+- Many-to-One with `Properties` (Each booking is for one property)
+- One-to-One with `Payments` (Each booking has one payment)
+
+---
+
+#### 4. Reviews
+**Fields**:
+- `id` (PK): Review ID
+- `rating`: Integer (1-5 stars)
+- `comment`: Text feedback
+- `created_at`: Timestamp
+- `cleanliness_rating`: Sub-rating (1-5)
+
+**Relationships**:
+- Many-to-One with `Users` (Review author)
+- Many-to-One with `Properties` (Reviewed property)
+
+---
+
+#### 5. Payments
+**Fields**:
+- `id` (PK): Payment ID
+- `amount`: Decimal value
+- `currency`: ISO code (e.g., USD)
+- `stripe_payment_id`: External payment processor ID
+- `status`: Enum [succeeded, failed, refunded]
+
+**Relationships**:
+- One-to-One with `Bookings` (Each payment processes one booking)
+
+---
+
+### Entity-Relationship Diagram (Conceptual)
+```mermaid
+erDiagram
+    USERS ||--o{ PROPERTIES : "hosts"
+    USERS ||--o{ BOOKINGS : "books"
+    USERS ||--o{ REVIEWS : "writes"
+    PROPERTIES ||--o{ BOOKINGS : "has"
+    PROPERTIES ||--o{ REVIEWS : "receives"
+    BOOKINGS ||--|| PAYMENTS : "processes"
