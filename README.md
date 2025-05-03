@@ -291,3 +291,48 @@ erDiagram
 | **Data Leaks**        | RBAC + HTTPS                        | User privacy violations           |
 | **Payment Fraud**     | PCI-compliant processors            | Financial losses + legal risks    |
 | **DDoS Attacks**      | Rate limiting + Cloudflare          | API downtime + lost revenue       |
+
+## CI/CD Pipeline
+
+### What is CI/CD?
+Continuous Integration (CI) and Continuous Deployment (CD) automate the process of testing, building, and deploying code changes. This ensures rapid, reliable updates to the application.
+
+### Why It Matters for This Project
+- **Quality Control**: Catches bugs early by running automated tests on every code push.
+- **Faster Releases**: Enables frequent, incremental updates to the Airbnb Clone (e.g., new features or security patches).
+- **Consistency**: Eliminates "it works on my machine" issues via standardized build environments.
+
+### Tools & Workflow
+1. **GitHub Actions**  
+   - Automates testing (unit/integration) and linting on every `git push`.
+   - Example: Runs `pytest` for backend and `Jest` for frontend tests.
+
+2. **Docker**  
+   - Containerizes the app for identical environments across development, staging, and production.
+
+3. **AWS ECS/ECR** (or similar)  
+   - Auto-deploys containers to staging/production after tests pass.
+   - Enables blue-green deployments for zero-downtime updates.
+
+4. **Monitoring** (Optional)  
+   - Tools like Sentry or New Relic track post-deployment errors/performance.
+
+### Sample Pipeline
+```yaml
+name: CI/CD Pipeline
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm install && npm test  # Frontend tests
+      - run: pip install -r requirements.txt && pytest  # Backend tests
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: aws-actions/configure-aws-credentials@v4
+      - run: docker build -t airbnb-clone .
+      - run: aws ecr push airbnb-clone:latest
