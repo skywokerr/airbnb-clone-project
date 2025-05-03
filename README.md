@@ -1,6 +1,7 @@
 # Airbnb-Clone-Project
-![CI](https://github.com/your-repo/airbnb-clone/actions/workflows/main.yml/badge.svg)
-![Test Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)
+[![CI](https://github.com/your-repo/airbnb-clone/actions/workflows/ci.yml/badge.svg)](https://github.com/your-repo/airbnb-clone/actions)
+[![Coverage](https://coveralls.io/repos/github/your-repo/airbnb-clone/badge.svg?branch=main)](https://coveralls.io/github/your-repo/airbnb-clone)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ## Project Overview
 The **Airbnb Clone Project** is a comprehensive, real-world application designed to simulate the development of a robust booking platform like Airbnb. It involves a deep dive into **full-stack development**, focusing on **backend systems**, database design, API development, and application security. This project enables learners to understand complex architectures, workflows, and collaborative team dynamics while building a **scalable** web application.
 
