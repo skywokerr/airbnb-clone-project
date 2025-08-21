@@ -116,15 +116,15 @@ Our design is guided by the following core principles:
 The design uses a restrained and effective color palette:
 *   **Primary / Brand Blue:** `#2563EB`
     *   *Usage:* Primary buttons, key active states, highlights, and links. This is the main action color.
-*   **Text / Gray-900 (近似値):** `#1F2937` (or very similar)
+*   **Text / Gray-900 :** `#1F2937` (or very similar)
     *   *Usage:* Primary headings and body text for maximum readability.
-*   **Text / Gray-600 (近似値):** `#4B5563`
+*   **Text / Gray-600 :** `#4B5563`
     *   *Usage:* Secondary text, placeholder text, and less important metadata.
 *   **Background / White:** `#FFFFFF`
     *   *Usage:* Primary background for cards and the main page.
-*   **Background / Gray-100 (近似値):** `#F3F4F6`
+*   **Background / Gray-100 :** `#F3F4F6`
     *   *Usage:* Secondary page background, subtle hover states.
-*   **Border / Gray-300 (近似値):** `#D1D5DB`
+*   **Border / Gray-300 :** `#D1D5DB`
     *   *Usage:* Dividers, input field borders, and card outlines.
 *   **Success Green:** `#10B981` (Used in the mockup for a success message)
     *   *Usage:* Positive feedback, success states, confirmations.
@@ -158,7 +158,7 @@ Identifying and documenting the core design properties of a mockup is a critical
 
 4.  **Improves Communication and Handoff:** A well-documented design system bridges the gap between the design and development phases. It provides a clear, objective checklist for developers to implement and for designers to QA (Quality Assurance) against. This minimizes subjective feedback like "this doesn't look right" and replaces it with objective checks like "this button should use `@color-primary` but is currently `#1E40AF`."
 
-Of course. Here is the new "UI Component Patterns" section for your README.md, written with a focus on reusability and modern frontend practices.
+
 
 ---
 
