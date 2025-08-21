@@ -107,6 +107,53 @@ Our design is guided by the following core principles:
 | **Listing Detailed View** | To provide all necessary information about a single property, convincing the user to proceed with a booking and answering all potential questions. | <ul><li>High-quality image gallery.</li><li>Property title, host information, and rating.</li><li>Key amenities highlights.</li><li>Booking widget (date picker, price calculation, 'Reserve' CTA).</li><li>Detailed description.</li><li>Map showing precise location.</li><li>Section for user reviews and ratings.</li></ul> |
 | **Simple Checkout View** | To finalize the booking transaction with minimal friction and maximum clarity, ensuring the user feels secure and informed. | <ul><li>Clear breakdown of costs (nightly rate, cleaning fee, service fee, total).</li><li>Summary of trip details (dates, property name, guests).</li><li>Simple, multi-step form for personal and payment details.</li><li>Prominent cancellation policy and rules reminder.</li><li>Confidently styled "Confirm Booking" button.</li><li>Loading indicator upon submission.</li></ul> |
 
+
+#### Color Styles
+The design uses a restrained and effective color palette:
+*   **Primary / Brand Blue:** `#2563EB`
+    *   *Usage:* Primary buttons, key active states, highlights, and links. This is the main action color.
+*   **Text / Gray-900 (近似値):** `#1F2937` (or very similar)
+    *   *Usage:* Primary headings and body text for maximum readability.
+*   **Text / Gray-600 (近似値):** `#4B5563`
+    *   *Usage:* Secondary text, placeholder text, and less important metadata.
+*   **Background / White:** `#FFFFFF`
+    *   *Usage:* Primary background for cards and the main page.
+*   **Background / Gray-100 (近似値):** `#F3F4F6`
+    *   *Usage:* Secondary page background, subtle hover states.
+*   **Border / Gray-300 (近似値):** `#D1D5DB`
+    *   *Usage:* Dividers, input field borders, and card outlines.
+*   **Success Green:** `#10B981` (Used in the mockup for a success message)
+    *   *Usage:* Positive feedback, success states, confirmations.
+*   **Error Red:** `#EF4444` (Implied for a robust system)
+    *   *Usage:* Error messages, warning states, destructive actions. (Note: While not explicitly shown in every mockup, this is a standard system color that must be defined).
+
+#### Typography
+The typography scale is clean and modern, favoring a clear hierarchy.
+
+*   **Font Family:** Inter (A popular, highly readable sans-serif font)
+*   **Font Weights & Sizes:**
+    *   **Heading 1 (Large):** `Font Weight: 600 (Semibold)` | `Font Size: 30px`
+    *   **Heading 2 (Medium):** `Font Weight: 600 (Semibold)` | `Font Size: 24px`
+    *   **Heading 3 (Small):** `Font Weight: 600 (Semibold)` | `Font Size: 20px`
+    *   **Body / Paragraph (Default):** `Font Weight: 400 (Regular)` | `Font Size: 16px`
+    *   **Small / Metadata:** `Font Weight: 400 (Regular)` | `Font Size: 14px`
+    *   **Button Text:** `Font Weight: 500 (Medium)` | `Font Size: 16px`
+
+### Importance of Identifying Design Properties
+
+Identifying and documenting the core design properties of a mockup is a critical first step in the development process. It is the translation layer between a designer's static image and a developer's functional, live code. Here’s why it's so important:
+
+1.  **Ensures Visual Consistency:** By extracting a defined set of colors and typography styles, we guarantee that every button, headline, and card across the entire application looks the same. This creates a polished, professional, and trustworthy user experience. Without this, different developers might implement slightly different shades of blue or font weights, leading to a messy and inconsistent UI.
+
+2.  **Establishes a Single Source of Truth:** The documented design properties become the official reference for the entire team. If a question arises about a font size or color, developers, other designers, and project managers can refer to this document instead of guessing or constantly asking for clarification. This reduces errors and saves significant time.
+
+3.  **Enables Systematic and Scalable Development:** These properties are not just one-off values; they are the building blocks of a **Design System**. In code, we will implement these as CSS variables (e.g., `--color-primary: #2563EB;`) or using a theme object in a framework like React. This allows for:
+    *   **Easy Theming:** Changing the look of the entire app (e.g., from light mode to dark mode) becomes much simpler.
+    *   **Efficient Refactoring:** If the brand color needs to change later, we update it in one place (the variable declaration) instead of hunting through hundreds of CSS files.
+    *   **Faster Development:** Developers can reuse predefined styles instead of manually entering values each time.
+
+4.  **Improves Communication and Handoff:** A well-documented design system bridges the gap between the design and development phases. It provides a clear, objective checklist for developers to implement and for designers to QA (Quality Assurance) against. This minimizes subjective feedback like "this doesn't look right" and replaces it with objective checks like "this button should use `@color-primary` but is currently `#1E40AF`."
+
 ### Role Synergy in the Airbnb Clone  
 - **BA + PO**: Refine "wishlist" feature based on guest/host pain points.  
 - **Architect + DevOps**: Optimize database sharding for global property listings.  
