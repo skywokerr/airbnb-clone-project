@@ -69,10 +69,14 @@ The **Airbnb Clone Project** is a comprehensive, real-world application designed
   - Manages cloud infrastructure (e.g., AWS EC2/RDS for databases).  
 - **Key Focus**: Zero-downtime deployments during peak booking seasons.  
 
----  
-Of course. Here is a comprehensive "UI/UX Design Planning" section you can add to your README.md file. It's structured to be clear, professional, and informative for anyone reading the project documentation.
 
----
+### Scrum Master
+- **Responsibilities**:
+  - Facilitates key Agile ceremonies (e.g., Daily Stand-ups, Sprint Planning, Retrospectives).
+  - Removes impediments for the development team (e.g., resolving cross-team dependencies, clarifying requirements with stakeholders).
+  - Shields the team from external interruptions to protect the focus and predictability of the sprint.
+- **Key Focus**: Ensuring a smooth, predictable, and sustainable development process that maximizes the team's productivity and delivers value to users each sprint.
+
 
 ## UI/UX Design Planning
 
@@ -153,6 +157,91 @@ Identifying and documenting the core design properties of a mockup is a critical
     *   **Faster Development:** Developers can reuse predefined styles instead of manually entering values each time.
 
 4.  **Improves Communication and Handoff:** A well-documented design system bridges the gap between the design and development phases. It provides a clear, objective checklist for developers to implement and for designers to QA (Quality Assurance) against. This minimizes subjective feedback like "this doesn't look right" and replaces it with objective checks like "this button should use `@color-primary` but is currently `#1E40AF`."
+
+Of course. Here is the new "UI Component Patterns" section for your README.md, written with a focus on reusability and modern frontend practices.
+
+---
+
+## UI Component Patterns
+
+This section outlines the foundational, reusable UI components we will build to construct the main pages of the application. Adopting a component-based architecture ensures consistency, improves maintainability, and allows for parallel development.
+
+### Planned Component Library
+
+#### 1. Navbar (`Navbar.jsx`)
+The global navigation component present across all pages.
+*   **Purpose:** Provides primary navigation and key user actions.
+*   **Props:**
+    *   `currentUser` (Object): Optional. User data object to conditionally render login vs. user menu state.
+*   **Key Features & Content:**
+    *   Logo linking to the homepage.
+    *   Search bar component (could be its own child component).
+    *   Navigation links (e.g., "Become a Host").
+    *   Conditional rendering: Displays a "Login" button or a user avatar dropdown menu based on authentication status.
+
+#### 2. Property Card (`PropertyCard.jsx`)
+A reusable card component for displaying a summary of a rental property.
+*   **Purpose:** To present a consistent and engaging preview of a listing in search results and favorite lists.
+*   **Props:**
+    *   `property` (Object): Contains all property data (title, imageUrl, location, price, rating, etc.).
+    *   `onFavoriteToggle` (Function): Callback function to handle adding/removing a property from favorites.
+*   **Key Features & Content:**
+    *   Image gallery with a swipe indicator and a favorite icon (heart) button.
+    *   Property title, location, and distance.
+    *   Price per night and total price for dates.
+    *   Average rating and number of reviews.
+    *   Hover effects for interactivity.
+
+#### 3. Footer (`Footer.jsx`)
+The global footer component.
+*   **Purpose:** To house secondary navigation, links, and copyright information.
+*   **Props:** (Likely none, as content is mostly static)
+*   **Key Features & Content:**
+    *   Links to pages like "About", "Privacy Policy", "Terms of Service".
+    *   Social media icons.
+    *   Copyright notice.
+    *   Responsive design that stacks on mobile.
+
+#### 4. Search Filter Modal (`SearchFilterModal.jsx`)
+A modal/drawer component for refining search criteria.
+*   **Purpose:** To provide a user-friendly interface for applying complex filters without navigating away from the results.
+*   **Props:**
+    *   `isOpen` (Boolean): Controls the visibility of the modal.
+    *   `onClose` (Function): Function to call to close the modal.
+    *   `filters` (Object): The current state of all applied filters.
+    *   `onFiltersChange` (Function): Callback to update the parent component's filter state.
+*   **Key Features & Content:**
+    *   Filter sections for price range, number of bedrooms/beds, amenities (Wifi, Pool, etc.), property type, and more.
+    *   "Clear all" and "Apply filters" buttons.
+
+#### 5. Booking Widget (`BookingWidget.jsx`)
+A crucial component for selecting dates and initiating a booking.
+*   **Purpose:** To handle the core transaction flow: date selection, price calculation, and reservation initiation.
+*   **Props:**
+    *   `property` (Object): Property data, especially its `price` and `id`.
+    *   `unavailableDates` (Array): List of dates already booked to disable them in the calendar.
+*   **Key Features & Content:**
+    *   Interactive date picker (from a library like `react-datepicker`).
+    *   Real-time price calculation based on selected dates and nightly rate.
+    *   Breakdown of costs (cleaning fee, service fee, total).
+    *   "Reserve" or "Book Now" call-to-action button.
+
+#### 6. Review Item (`ReviewItem.jsx`)
+A component to display a single user review.
+*   **Purpose:** To standardize the presentation of user feedback throughout the app.
+*   **Props:**
+    *   `review` (Object): Contains reviewer name, avatar, date, rating, and comment.
+*   **Key Features & Content:**
+    *   Reviewer's avatar and name.
+    *   Star rating display.
+    *   Date of the review.
+    *   The review comment text.
+
+<!-- ### Benefits of This Approach
+*   **Reusability:** Components like `PropertyCard` can be used on the search page, the favorites page, and the user profile page.
+*   **Consistency:** Ensures a uniform look and feel across the entire application.
+*   **Maintainability:** Fixing a bug or updating a style in one component propagates everywhere it's used.
+*   **Testability:** Isolated components are easier to unit test in isolation. -->
 
 ### Role Synergy in the Airbnb Clone  
 - **BA + PO**: Refine "wishlist" feature based on guest/host pain points.  
